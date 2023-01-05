@@ -12,7 +12,7 @@ public class Player: Component
 
     private Key[] inputs = { Key.Up, Key.Down, Key.Left, Key.Right };
     private float speed;
-    private Vector3 velocity;
+    private Rigidbody rb;
 
     public Player(float speed)
     {
@@ -22,22 +22,28 @@ public class Player: Component
     protected override void Initialize()
     {
         base.Initialize();
-        Transform.Scale = new Vector3(4f, 4f, 2f);
+        rb = GetComponent<Rigidbody>();
     }
 
     protected override void Update()
     {
         base.Update();
-        velocity = Vector3.Zero;
 
+        Vector3 direction = Vector3.Zero;
+        
         if (Input.KeyDown(inputs[0]))
-            velocity.Y = -speed;
+            direction.Y = -1;
         if (Input.KeyDown(inputs[1]))
-            velocity.Y = speed;
+            direction.Y = 1;
         if (Input.KeyDown(inputs[2]))
-            velocity.X = -speed;
+            direction.X = -1;
         if (Input.KeyDown(inputs[3]))
-            velocity.X = speed;
+            direction.X = 1;
+
+        if (direction != Vector3.Zero)
+            direction = Vector3.Normalize(direction);
+        
+        rb.Velocity = direction * speed;
 
     }
 }

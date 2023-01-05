@@ -30,6 +30,5 @@ public class Rigidbody : Component
     {
         base.Update();
         Transform.Position += Velocity * Time.DeltaTime;
-
     }
 }
