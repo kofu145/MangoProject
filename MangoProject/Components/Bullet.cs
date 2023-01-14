@@ -7,7 +7,7 @@ using Pie.Windowing;
 
 namespace MangoProject.Components;
 
-public class TestBullet : Component
+public class Bullet : Component
 {
     private CircleCollider collider;
     private Rigidbody rb;
@@ -28,7 +28,7 @@ public class TestBullet : Component
     {
         var radius = collider.Radius;
         Vector3 newVel = rb.Velocity;
-        
+        /*
         if (Transform.Position.Y <= radius)
         {
             Transform.Position.Y = radius;
@@ -52,7 +52,7 @@ public class TestBullet : Component
             Transform.Position.X = Graphics.Viewport.Width - radius;
             newVel.X = -rb.Velocity.X;
         }
-
+        */
         rb.Velocity = newVel;
 
     }

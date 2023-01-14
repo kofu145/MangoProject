@@ -11,10 +11,10 @@ GameSettings gameSettings = new GameSettings()
 {  
     Title = "MangoProject",
     Size = new Size(1280, 720),
-    Border = WindowBorder.Fixed
+    Border = WindowBorder.Resizable
 };
 
-using EaselGame game = new EaselGame(gameSettings, new MainScene());
+using EaselGame game = new EaselGame(gameSettings, new StageOne());
 
 Logger.UseConsoleLogs();
 game.Run();

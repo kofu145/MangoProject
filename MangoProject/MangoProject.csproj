@@ -21,7 +21,6 @@
       <Folder Include="Events\StageOne" />
       <Folder Include="Events\StageThree" />
       <Folder Include="Events\StageTwo" />
-      <Folder Include="Prefabs" />
     </ItemGroup>
 
 </Project>
