@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MangoProject", "MangoProject.csproj", "{EE115CBF-C849-4BDE-A99C-DE9D899664A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GramEngine", "..\GramEngine\GramEngine.csproj", "{F755FD49-321C-4972-98E8-E711C467CCFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{EE115CBF-C849-4BDE-A99C-DE9D899664A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE115CBF-C849-4BDE-A99C-DE9D899664A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE115CBF-C849-4BDE-A99C-DE9D899664A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F755FD49-321C-4972-98E8-E711C467CCFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F755FD49-321C-4972-98E8-E711C467CCFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F755FD49-321C-4972-98E8-E711C467CCFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F755FD49-321C-4972-98E8-E711C467CCFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

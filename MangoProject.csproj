@@ -8,8 +8,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Components" />
-      <Folder Include="Scene" />
+      <ProjectReference Include="..\GramEngine\GramEngine.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Events\StageOne" />
+      <Folder Include="Events\StageThree" />
+      <Folder Include="Events\StageTwo" />
     </ItemGroup>
 
 </Project>
