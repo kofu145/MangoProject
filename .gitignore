@@ -36,6 +36,8 @@ riderModule.iml
 _UpgradeReport_Files/
 [Pp]ackages/
 
+# Content/
+
 Thumbs.db
 Desktop.ini
 .DS_Store
