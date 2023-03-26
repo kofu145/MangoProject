@@ -29,22 +29,22 @@ public class Player: Component
         checker = false;
         Vector3 direction = Vector3.Zero;
 
-        if (InputManager.Instance.GetKeyPressed(inputs[0]))
+        if (InputManager.GetKeyPressed(inputs[0]))
         {
             direction.Y = -1;
         }
 
-        if (InputManager.Instance.GetKeyPressed(inputs[1]))
+        if (InputManager.GetKeyPressed(inputs[1]))
         {
             direction.Y = 1;
         }
 
-        if (InputManager.Instance.GetKeyPressed(inputs[2]))
+        if (InputManager.GetKeyPressed(inputs[2]))
         {
             direction.X = -1;
         }
 
-        if (InputManager.Instance.GetKeyPressed(inputs[3]))
+        if (InputManager.GetKeyPressed(inputs[3]))
         {
             checker = true;
             direction.X = 1;

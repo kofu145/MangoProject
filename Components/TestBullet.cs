@@ -39,15 +39,15 @@ public class TestBullet : Component
             newVel.X = -rb.Velocity.X;
         }
 
-        if (Transform.Position.Y >= Window.Height - radius)
+        if (Transform.Position.Y >= GameStateManager.Window.Height - radius)
         {
-            Transform.Position.Y = Window.Height - radius - 1;
+            Transform.Position.Y = GameStateManager.Window.Height - radius - 1;
             newVel.Y = -rb.Velocity.Y;
         }
 
-        if (Transform.Position.X >= Window.Width - radius)
+        if (Transform.Position.X >= GameStateManager.Window.Width - radius)
         {
-            Transform.Position.X = Window.Width - radius - 1;
+            Transform.Position.X = GameStateManager.Window.Width - radius - 1;
             newVel.X = -rb.Velocity.X;
         }
 

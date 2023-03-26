@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using MangoProject.Components;
 using System.Numerics;
+using GramEngine.Core;
 
 namespace MangoProject.Events
 {
@@ -41,7 +42,7 @@ namespace MangoProject.Events
             stopwatch.Stop();
         }
 
-        public void UpdateEvents(float gameTime)
+        public void UpdateEvents(GameTime gameTime)
         {
             foreach (IEvent enemyEvent in events)
             {

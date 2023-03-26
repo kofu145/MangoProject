@@ -1,15 +1,19 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using GramEngine.Core;
 using System;
-using MangoProject.Scene;
+using MangoProject.Scenes;
 
-namespace EirTesting // Note: actual namespace depends on the project name.
+namespace MangoProject // Note: actual namespace depends on the project name.
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Window window = new Window(initialGameState: new TestScene());
+            WindowSettings windowSettings = new WindowSettings()
+            {
+                GlobalXOffset = 350
+            };
+            Window window = new Window(new TestEnemiesScene(), windowSettings);
             window.Run();
         }
     }

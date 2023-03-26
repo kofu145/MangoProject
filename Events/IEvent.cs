@@ -1,5 +1,6 @@
 ﻿using MangoProject.Components;
 using System.Numerics;
+using GramEngine.Core;
 
 namespace MangoProject.Events
 {
@@ -10,6 +11,6 @@ namespace MangoProject.Events
 
         public void Start();
 
-        public void Update(float gameTime);
+        public void Update(GameTime gameTime);
     }
 }
