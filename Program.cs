@@ -15,6 +15,7 @@ namespace MangoProject // Note: actual namespace depends on the project name.
             };
             Window window = new Window(new TestEnemiesScene(), windowSettings);
             window.Run();
+            
         }
     }
 }

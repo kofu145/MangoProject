@@ -25,6 +25,7 @@ public class Player: Component
     private float invincibleDuration;
     private float flickerTime;
     private float flickerEvent;
+    private Entity focusEntity;
 
     private Keys[] inputs = { Keys.W, Keys.S, Keys.A, Keys.D, Keys.Space, Keys.LShift };
     private float topSpeed;
@@ -42,12 +43,6 @@ public class Player: Component
         isFiring = false;
         nextFireEvent = 0;
         focusing = false;
-        var focusEntity = new Entity()
-            .AddComponent(new Sprite("./Content/basic_bullet.png"))
-            .AddComponent(new LockPosition(ParentEntity));
-        focusSprite = focusEntity.GetComponent<Sprite>();
-        focusSprite.Enabled = false;
-        ParentScene.AddEntity(focusEntity);
         isInvincible = false;
         loseInvincibleEvent = 0;
         this.invincibleDuration = invincibleDuration;
@@ -58,6 +53,15 @@ public class Player: Component
 
     public override void Initialize()
     {
+        
+        focusEntity = new Entity()
+            .AddComponent(new Sprite("./Content/basic_bullet.png"))
+            .AddComponent(new LockPosition(ParentEntity));
+        focusEntity.Transform.Scale = new Vector2(2f, 2f);
+        focusSprite = focusEntity.GetComponent<Sprite>();
+        focusSprite.Enabled = false;
+        ParentScene.AddEntity(focusEntity);
+
         sprite = ParentEntity.GetComponent<Sprite>();
         rb = ParentEntity.GetComponent<Rigidbody>();
         bullet = new PlayerBullet();
@@ -115,12 +119,12 @@ public class Player: Component
         
         Transform.Position.X = Math.Clamp(
             Transform.Position.X,
-            (-boundaryX / 2 + ((sprite.Width+.05f * Transform.Scale.X) / 2)), 
-            (boundaryX / 2- ((sprite.Width-.05f * Transform.Scale.X) / 2)));
+            (sprite.Width+.05f * Transform.Scale.X) / 2, 
+            (boundaryX - ((sprite.Width-.05f * Transform.Scale.X) / 2)));
         
         Transform.Position.Y = Math.Clamp(Transform.Position.Y, 
-            -boundaryY / 2 + (sprite.Height * Transform.Scale.Y / 2), 
-            boundaryY / 2 -(sprite.Height * Transform.Scale.Y / 2));
+            (sprite.Height * Transform.Scale.Y / 2), 
+            boundaryY -(sprite.Height * Transform.Scale.Y / 2));
 
     }
 
@@ -134,7 +138,9 @@ public class Player: Component
             }
 
             isInvincible = true;
-            loseInvincibleEvent = (float)
+            loseInvincibleEvent = (float)GameStateManager.GameTime.TotalTime.TotalSeconds + invincibleDuration;
+            flickerEvent = (float)GameStateManager.GameTime.TotalTime.TotalSeconds + flickerTime;
+            Transform.Position = new Vector3(0f, -200f, 0f);
         }
     }
 }

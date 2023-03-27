@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using EirTesting.Prefabs;
 using GramEngine.Core;
 using GramEngine.Core.Input;
 using GramEngine.ECS;
@@ -13,13 +14,9 @@ public class TestScene : GameState
     public override void Initialize()
     {
         base.Initialize();
-        
-        kitsuneEntity = new Entity();
-        kitsuneEntity.AddComponent(new Sprite("./Content/kitsune.png"));
-        kitsuneEntity.Transform.Scale = new Vector2(3f, 3f);//, 0f);
-        kitsuneEntity.Transform.Position.Z = 0;
-        kitsuneEntity.AddComponent(new Player(400));
-        kitsuneEntity.AddComponent(new Rigidbody());
+
+        PlayerPrefab playerPrefab = new PlayerPrefab();
+        kitsuneEntity = playerPrefab.Instantiate();
 
         var bulletTexture = "./Content/smaller_bullet.png";
         var bulletSize = 2f;

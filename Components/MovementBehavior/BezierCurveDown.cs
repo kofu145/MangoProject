@@ -40,6 +40,5 @@ public class BezierCurveDown : Component
         // thanks to our border
         //Transform.Position.X += StageUtils.XOffset;
         t += speed * gameTime.DeltaTime;
-        Console.WriteLine(t);
     }
 }

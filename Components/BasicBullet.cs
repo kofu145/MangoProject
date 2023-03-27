@@ -8,10 +8,12 @@ public class BasicBullet : Component
 {
     private CircleCollider collider;
     private Rigidbody rb;
+    private Player player;
     public override void Initialize()
     {
         collider = ParentEntity.GetComponent<CircleCollider>();
         rb = ParentEntity.GetComponent<Rigidbody>();
+        player = ParentEntity.GetComponent<Player>();
         
         var radius = collider.Radius;
         Vector3 newVel = Vector3.Zero;
@@ -20,7 +22,7 @@ public class BasicBullet : Component
         {
             if (other.ParentEntity.Tag == "Player")
             {
-                ParentEntity.GetComponent<Player>()
+                player.TakeDamage();
             }
             //rb.Velocity = -rb.Velocity;
         };
