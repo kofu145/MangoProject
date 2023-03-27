@@ -14,7 +14,7 @@ public class Player: Component
 
     public int Health;
     private Sprite sprite;
-    private PlayerBullet bullet;
+    private PlayerBulletPrefab bullet;
     private bool isFiring;
     private float nextFireEvent;
     private float attackSpeed;
@@ -64,7 +64,7 @@ public class Player: Component
 
         sprite = ParentEntity.GetComponent<Sprite>();
         rb = ParentEntity.GetComponent<Rigidbody>();
-        bullet = new PlayerBullet();
+        bullet = new PlayerBulletPrefab();
     }
 
     public override void Update(GameTime gameTime)
@@ -98,7 +98,11 @@ public class Player: Component
 
         if (isFiring && gameTime.TotalTime.TotalSeconds >= nextFireEvent)
         {
-            // bullet code
+            var playerBullet = bullet.Instantiate();
+            playerBullet.Transform.Position = Transform.Position;
+            playerBullet.GetComponent<Rigidbody>().AddForce(new Vector3(0, -1300, 0));
+            ParentScene.AddEntity(playerBullet);
+            nextFireEvent = (float)gameTime.TotalTime.TotalSeconds + attackSpeed;
         }
 
         if (isInvincible && gameTime.TotalTime.TotalSeconds >= loseInvincibleEvent)

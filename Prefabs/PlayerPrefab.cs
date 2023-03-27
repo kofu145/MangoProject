@@ -15,7 +15,7 @@ public class PlayerPrefab : Prefab
         kitsuneEntity.AddComponent(new Sprite("./Content/kitsune.png"));
         kitsuneEntity.Transform.Scale = new Vector2(2f, 2f);//, 0f);
         kitsuneEntity.Transform.Position = new Vector3(500, 500, 0);
-        kitsuneEntity.AddComponent(new Player(250, 180, 3, .13f, 4 , .1f));
+        kitsuneEntity.AddComponent(new Player(250, 160, 3, .13f, 4 , .1f));
         kitsuneEntity.AddComponent(new Rigidbody());
         return kitsuneEntity;
     }

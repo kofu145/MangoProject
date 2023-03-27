@@ -6,7 +6,10 @@ using System.Numerics;
 using EirTesting.Prefabs;
 using MangoProject.Components;
 using MangoProject.Components.MovementBehavior;
+using MangoProject.Events;
+using MangoProject.Events.StageOne;
 using MangoProject.Utils;
+using SFML.System;
 
 namespace MangoProject.Scenes;
 
@@ -14,6 +17,7 @@ public class TestEnemiesScene : GameState
 {
     private Entity kitsuneEntity;
     private Entity pixie;
+    private Timeline timeline;
 
     public override void Initialize()
     {
@@ -35,6 +39,10 @@ public class TestEnemiesScene : GameState
         pixie.Transform.Scale = new Vector2(3.5f, 3.5f);//, 2f);
         sprite.Origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
 
+        timeline = new Timeline();
+        timeline.AddEvent(new BasicSideFairies(0, 5, 1));
+        timeline.BeginTimeline();
+
         Console.WriteLine(pixie.Transform.Position);
         AddEntity(pixie);
         AddEntity(kitsuneEntity);
@@ -45,5 +53,6 @@ public class TestEnemiesScene : GameState
     {
         //Console.WriteLine(GameScene.Entities.Count);
         //Console.WriteLine(pixie.Transform.Position);
+        timeline.UpdateEvents(gameTime);
     }
 }

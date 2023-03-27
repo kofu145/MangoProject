@@ -33,8 +33,8 @@ public class StageUtils
     {
         foreach (var entity in gameScene.Entities)
         {
-            if (entity.Transform.Position.X < -5 || entity.Transform.Position.X > 590 ||
-                entity.Transform.Position.Y < -5 || entity.Transform.Position.Y > 725)
+            if (entity.Transform.Position.X < -10 || entity.Transform.Position.X > 590 ||
+                entity.Transform.Position.Y < -10 || entity.Transform.Position.Y > 730)
             {
                 gameScene.DestroyEntity(entity);
             }
