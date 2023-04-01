@@ -34,11 +34,9 @@ public class BezierCurveDown : Component
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        if (Transform.Position.X < 0)
-            t = 0;
+        
         Transform.Position = MathUtil.CubicBezierCurve(t, p1, p2, p3, p4).ToVec3();
-        // thanks to our border
-        //Transform.Position.X += StageUtils.XOffset;
+        
         t += speed * gameTime.DeltaTime;
     }
 }

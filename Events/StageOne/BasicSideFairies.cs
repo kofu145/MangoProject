@@ -31,14 +31,14 @@ public class BasicSideFairies : IEvent
             new Vector2(300, 200),
             new Vector2(100, 150),
             new Vector2(100, -15),
-            .3f
+            .2f
         );
         leftPixie = new BasicForestPixie(
             new Vector2(585, 200),
             new Vector2(300, 200),
             new Vector2(100, 150),
             new Vector2(100, -15),
-            .3f
+            .2f
         );
     }
     

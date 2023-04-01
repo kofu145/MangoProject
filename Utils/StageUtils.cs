@@ -23,6 +23,9 @@ public class StageUtils
         
         borderRect2.AddComponent(new RenderRect(new Vector2(350, GameStateManager.Window.Height)));
         borderRect2.GetComponent<RenderRect>().FillColor = Color.Coral;
+
+        borderRect1.Tag = "border";
+        borderRect2.Tag = "border";
         
         gameScene.AddEntity(borderRect1);
         gameScene.AddEntity(borderRect2);
@@ -33,8 +36,10 @@ public class StageUtils
     {
         foreach (var entity in gameScene.Entities)
         {
-            if (entity.Transform.Position.X < -10 || entity.Transform.Position.X > 590 ||
+            var xOffset = GameStateManager.Window.settings.GlobalXOffset;
+            if ((entity.Transform.Position.X < -10 || entity.Transform.Position.X > 590 ||
                 entity.Transform.Position.Y < -10 || entity.Transform.Position.Y > 730)
+                && entity.Tag != "border")
             {
                 gameScene.DestroyEntity(entity);
             }

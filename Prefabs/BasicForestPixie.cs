@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 using GramEngine.ECS;
 using GramEngine.ECS.Components;
+using MangoProject.Components.BulletPatterns;
 using MangoProject.Components.MovementBehavior;
 
 namespace EirTesting.Prefabs;
@@ -25,6 +26,7 @@ public class BasicForestPixie : Prefab
         var pixie = new Entity();
         pixie.AddComponent(new Sprite("./Content/forest_pixie.png"));
         pixie.AddComponent(new BezierCurveDown(p1, p2, p3, p4, speed));
+        pixie.AddComponent(new ShotgunCone(48, 5, 200, true, 1.5f, 1, 10));
         var sprite = pixie.GetComponent<Sprite>();
         pixie.Transform.Position = new Vector3(550, 5, 0);
         pixie.Transform.Scale = new Vector2(3.5f, 3.5f);//, 2f);
