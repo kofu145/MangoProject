@@ -35,7 +35,9 @@ public class TestEnemiesScene : GameState
             new Vector2(0, 300),
             .3f
             ));*/
-        pixie.AddComponent(new ShotgunCone(48, 10, 200, true, .8f, 0, 10));
+        //pixie.AddComponent(new ShotgunCone(48, 10, 200, true, .8f, 0, 10));
+        pixie.AddComponent(new StackedShotgun(48, 50, 10, 200, true, .8f, 0, 10, 2));
+
         var sprite = pixie.GetComponent<Sprite>();
         //pixie.Transform.Position = new Vector3(550, 5, 0);
         pixie.Transform.Position = new Vector3(300, 5, 0);

@@ -110,9 +110,12 @@ public class Player: Component
             isInvincible = false;
             sprite.Enabled = true;
         }
-        
+
         if (isInvincible && gameTime.TotalTime.TotalSeconds > flickerEvent)
+        {
             sprite.Enabled = !sprite.Enabled;
+            flickerEvent = (float)GameStateManager.GameTime.TotalTime.TotalSeconds + flickerTime;
+        }
 
         if (direction != Vector3.Zero)
             direction = Vector3.Normalize(direction);
@@ -138,13 +141,18 @@ public class Player: Component
         {
             if (Health <= 0)
             {
-                // death
+                Console.WriteLine("Dead!");
             }
 
             isInvincible = true;
             loseInvincibleEvent = (float)GameStateManager.GameTime.TotalTime.TotalSeconds + invincibleDuration;
             flickerEvent = (float)GameStateManager.GameTime.TotalTime.TotalSeconds + flickerTime;
-            Transform.Position = new Vector3(0f, -200f, 0f);
+            Transform.Position = new Vector3(290, 600f, 0f);
+            List<Entity> bullets = ParentScene.FindEntitiesWithTag("bullet");
+            foreach (var entity in bullets)
+            {
+                ParentScene.DestroyEntity(entity);
+            }
         }
     }
 }

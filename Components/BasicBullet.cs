@@ -13,14 +13,14 @@ public class BasicBullet : Component
     {
         collider = ParentEntity.GetComponent<CircleCollider>();
         rb = ParentEntity.GetComponent<Rigidbody>();
-        player = ParentEntity.GetComponent<Player>();
+        player = ParentScene.FindWithTag("player").GetComponent<Player>();
         
         var radius = collider.Radius;
         Vector3 newVel = Vector3.Zero;
         
         ParentEntity.GetComponent<CircleCollider>().OnCollision += (CircleCollider other) =>
         {
-            if (other.ParentEntity.Tag == "Player")
+            if (other.ParentEntity.Tag == "player")
             {
                 player.TakeDamage();
             }

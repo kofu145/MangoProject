@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Drawing;
+using System.Numerics;
 using GramEngine.ECS;
 using GramEngine.ECS.Components;
 using MangoProject.Components;
@@ -16,12 +17,19 @@ public class BasicBulletPrefab : Prefab
     {
         var entity = new Entity();
         var sprite = entity.AddComponent(new Sprite("Content/basic_bullet.png")).GetComponent<Sprite>();
-        var scale = radius / 2 / sprite.Width;
+        var scale = radius / sprite.Width * 2;
         entity.Transform.Scale = new Vector2(scale, scale);
-    
         entity.AddComponent(new Rigidbody())
             .AddComponent(new CircleCollider(radius, false, false))
             .AddComponent(new BasicBullet());
+        entity.AddComponent(new RenderCircle(radius));
+        var renderCircle = entity.GetComponent<RenderCircle>();
+        renderCircle.FillColor = Color.Empty;
+        renderCircle.OutlineColor = Color.Aquamarine;
+        renderCircle.BorderThickness = 1;
+        renderCircle.Origin = new Vector2(radius, radius);
+
+        entity.Tag = "bullet";
         return entity;
     }
 }
