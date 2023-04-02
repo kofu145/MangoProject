@@ -15,8 +15,8 @@ public class StageUtils
         
         var borderRect1 = new Entity();
         var borderRect2 = new Entity();
-        borderRect1.Transform.Position.X = -350;
-        borderRect2.Transform.Position.X = 580;
+        borderRect1.Transform.Position = new Vector3(-350, 0, 1000);
+        borderRect2.Transform.Position = new Vector3(580, 0, 1000);
 
         borderRect1.AddComponent(new RenderRect(new Vector2(350, GameStateManager.Window.Height)));
         borderRect1.GetComponent<RenderRect>().FillColor = Color.Coral;

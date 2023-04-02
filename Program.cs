@@ -11,7 +11,8 @@ namespace MangoProject // Note: actual namespace depends on the project name.
         {
             WindowSettings windowSettings = new WindowSettings()
             {
-                GlobalXOffset = 350
+                GlobalXOffset = 350,
+                ShowColliders = true
             };
             Window window = new Window(new TestEnemiesScene(), windowSettings);
             window.Run();

@@ -16,18 +16,12 @@ public class BasicBulletPrefab : Prefab
     public override Entity Instantiate()
     {
         var entity = new Entity();
-        var sprite = entity.AddComponent(new Sprite("Content/basic_bullet.png")).GetComponent<Sprite>();
+        var sprite = entity.AddComponent(new Sprite("Content/elongated_bullet_small.png")).GetComponent<Sprite>();
         var scale = radius / sprite.Width * 2;
         entity.Transform.Scale = new Vector2(scale, scale);
-        entity.AddComponent(new Rigidbody())
+        entity.AddComponent(new Rigidbody(true))
             .AddComponent(new CircleCollider(radius, false, false))
             .AddComponent(new BasicBullet());
-        entity.AddComponent(new RenderCircle(radius));
-        var renderCircle = entity.GetComponent<RenderCircle>();
-        renderCircle.FillColor = Color.Empty;
-        renderCircle.OutlineColor = Color.Aquamarine;
-        renderCircle.BorderThickness = 1;
-        renderCircle.Origin = new Vector2(radius, radius);
 
         entity.Tag = "bullet";
         return entity;

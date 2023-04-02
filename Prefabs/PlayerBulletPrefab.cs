@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Drawing;
+using System.Numerics;
 using GramEngine.ECS;
 using GramEngine.ECS.Components;
 
@@ -13,6 +14,7 @@ public class PlayerBulletPrefab : Prefab
             .AddComponent(new CircleCollider(entity.GetComponent<Sprite>().Width, false, false))
             .AddComponent(new Rigidbody());
         entity.Transform.Scale = new Vector2(2, 2);
+        entity.GetComponent<Sprite>().Color = Color.FromArgb(100, 255, 255,255);
         return entity;
     }
 }
