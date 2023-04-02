@@ -9,22 +9,23 @@ public class TestBullet : Component
 {
     private CircleCollider collider;
     private Rigidbody rb;
+    private float radius;
+
+    public TestBullet(float radius)
+    {
+        this.radius = radius;
+    }
     public override void Initialize()
     {
-        collider = ParentEntity.GetComponent<CircleCollider>();
+        //collider = ParentEntity.GetComponent<CircleCollider>();
         rb = ParentEntity.GetComponent<Rigidbody>();
         
-        var radius = collider.Radius;
+        //var radius = collider.Radius;
         Vector3 newVel = Vector3.Zero;
-        
-        ParentEntity.GetComponent<CircleCollider>().OnCollision += (CircleCollider other) =>
-        {
-            //rb.Velocity = -rb.Velocity;
-        };
     }
     public override void Update(GameTime gameTime)
     {
-        var radius = collider.Radius;
+        //var radius = collider.Radius;
         Vector3 newVel = rb.Velocity;
         
         if (Transform.Position.Y <= radius)

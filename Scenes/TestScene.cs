@@ -16,13 +16,13 @@ public class TestScene : GameState
         base.Initialize();
 
         PlayerPrefab playerPrefab = new PlayerPrefab();
-        kitsuneEntity = playerPrefab.Instantiate();
+        //kitsuneEntity = playerPrefab.Instantiate();
 
         var bulletTexture = "./Content/smaller_bullet.png";
         var bulletSize = 2f;
         Random random = new Random();
         
-        for (int i = 0; i<10000; i++)
+        for (int i = 0; i<100; i++)
         {
             var bullet1 = new Entity();
             bullet1.AddComponent(new Sprite(bulletTexture));
@@ -35,15 +35,15 @@ public class TestScene : GameState
             float angle = random.Next(0, 360);
             Vector3 direction = new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0f);
             
-            bullet1.AddComponent(new TestBullet());
-            bullet1.AddComponent(new CircleCollider(sprite.Width / 2 * bulletSize, false, false));
+            bullet1.AddComponent(new TestBullet(sprite.Width / 2 * bulletSize));
+            bullet1.AddComponent(new CircleCollider(sprite.Width / 2 * bulletSize, false, true));
             
             bullet1.AddComponent(new Rigidbody());
             var rb = bullet1.GetComponent<Rigidbody>();
             rb.AddForce(direction*300);
             AddEntity(bullet1);
         }
-        kitsuneEntity.Transform.Position = new Vector3(100, 100, 20);
+        //kitsuneEntity.Transform.Position = new Vector3(100, 100, 20);
         //AddEntity(kitsuneEntity);
     }
 
