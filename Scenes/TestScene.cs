@@ -22,7 +22,7 @@ public class TestScene : GameState
         var bulletSize = 2f;
         Random random = new Random();
         
-        for (int i = 0; i<100; i++)
+        for (int i = 0; i<500; i++)
         {
             var bullet1 = new Entity();
             bullet1.AddComponent(new Sprite(bulletTexture));

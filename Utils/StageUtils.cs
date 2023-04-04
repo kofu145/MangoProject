@@ -39,7 +39,7 @@ public class StageUtils
             var xOffset = GameStateManager.Window.settings.GlobalXOffset;
             if ((entity.Transform.Position.X < -10 || entity.Transform.Position.X > 590 ||
                 entity.Transform.Position.Y < -10 || entity.Transform.Position.Y > 730)
-                && entity.Tag != "border")
+                && entity.Tag != "border" && entity.Tag != "player")
             {
                 gameScene.DestroyEntity(entity);
             }

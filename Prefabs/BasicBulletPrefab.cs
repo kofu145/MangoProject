@@ -20,7 +20,7 @@ public class BasicBulletPrefab : Prefab
         var scale = radius / sprite.Width * 2;
         entity.Transform.Scale = new Vector2(scale, scale);
         entity.AddComponent(new Rigidbody(true))
-            .AddComponent(new CircleCollider(radius, false, false))
+            .AddComponent(new CircleCollider(radius/2, false, false))
             .AddComponent(new BasicBullet());
 
         entity.Tag = "bullet";

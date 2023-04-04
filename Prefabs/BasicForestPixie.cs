@@ -27,8 +27,9 @@ public class BasicForestPixie : Prefab
         pixie.AddComponent(new Sprite("./Content/forest_pixie.png"));
         pixie.AddComponent(new BezierCurveDown(p1, p2, p3, p4, speed));
         //pixie.AddComponent(new ShotgunCone(48, 5, 200, true, 1.5f, 1, 10));
-        //pixie.AddComponent(new StackedShotgun(12, 50, 5, 150, true, 1.5f, 1, 10, 2));
-        pixie.AddComponent(new CircleOfBullets(12, 50, 64, 150, true, false, 1.5f, 1, 0, 1));
+        //pixie.AddComponent(new StackedShotgun(12, 20, 5, 150, true, 1.5f, 1, 5, 4));
+        //pixie.AddComponent(new CircleOfBullets(12, 50, 64, 150, true, false, 1.5f, 1, 0, 1));
+        pixie.AddComponent(new SpinBulletGenerator(12, 50, 32, 150, true, 0.5f, 1, 0, 1, 5));
 
         var sprite = pixie.GetComponent<Sprite>();
         pixie.Transform.Position = new Vector3(550, 5, 0);

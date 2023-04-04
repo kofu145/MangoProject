@@ -27,7 +27,7 @@ public class Player: Component
     private float flickerEvent;
     private Entity focusEntity;
 
-    private Keys[] inputs = { Keys.W, Keys.S, Keys.A, Keys.D, Keys.Space, Keys.LShift };
+    private Keys[] inputs = { Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space, Keys.LShift };
     private float topSpeed;
     private float speed;
     private float focusSpeed;
