@@ -139,6 +139,7 @@ public class Player: Component
     {
         if (!isInvincible)
         {
+            
             if (Health <= 0)
             {
                 Console.WriteLine("Dead!");

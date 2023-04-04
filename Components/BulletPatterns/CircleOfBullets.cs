@@ -1,40 +1,84 @@
 ﻿using System.Numerics;
+using EirTesting.Prefabs;
 using GramEngine.Core;
 using GramEngine.ECS;
+using GramEngine.ECS.Components;
 
 namespace MangoProject.Components.BulletPatterns;
 
 public class CircleOfBullets : Component
 {
     private int numBullets;
-    private int bulletSpeed;
+    private float bulletSpeed;
     private bool repeating;
     private float attackSpeed;
     private float nextFire;
     private Player player;
-
-    public CircleOfBullets(int numBullets, int bulletSpeed, bool repeating, float attackSpeed, float initialDelay)
+    private float offsetAngle;
+    private float decrementSpeed;
+    private int rows;
+    private bool aimed;
+    private BasicBulletPrefab bulletPrefab;
+    public CircleOfBullets(
+        float bullRadius, float decrementSpeed, int numBullets, float bulletSpeed, 
+        bool repeating, bool aimed, float attackSpeed, float initialDelay, 
+        float offsetAngle, int rows
+        )
     {
         this.numBullets = numBullets;
         this.bulletSpeed = bulletSpeed;
         this.repeating = repeating;
         this.attackSpeed = attackSpeed;
+        this.decrementSpeed = decrementSpeed;
+        this.rows = rows;
+        this.offsetAngle = offsetAngle;
+        this.aimed = aimed;
         nextFire = (float)GameStateManager.GameTime.TotalTime.TotalSeconds + initialDelay;
-        
+        bulletPrefab = new BasicBulletPrefab(bullRadius);
     }
-    
     public override void Initialize()
     {
-        base.Initialize();
         player = ParentScene.FindWithTag("player").GetComponent<Player>();
+
     }
 
     public override void Update(GameTime gameTime)
     {
-        base.Update(gameTime);
+        // get normalized direction vector from current entity to player position
+        // fire!!!
         if (gameTime.TotalTime.TotalSeconds > nextFire)
         {
+            var origBullSpeed = bulletSpeed;
+            for (int i = 0; i < rows; i++)
+            {
+                var direction = player.Transform.Position - Transform.Position;
+                
+                double angle = 0;
+                if (aimed)
+                    angle = Math.Atan2(direction.Y, direction.X) - MathUtil.DegToRad(offsetAngle);
+                else
+                    angle = 0 - offsetAngle;
+                
+                //angle = offsetAngle%2 == 0? angle : angle - MathUtil.DegToRad(offsetAngle/2);
+                var offset = 360.0 / numBullets;
+                
+                for (int j = 0; j < numBullets; j++)
+                {
+                    var bullet = bulletPrefab.Instantiate();
+                    var fireAngle = angle + MathUtil.DegToRad(offset * j);
+                    direction = Vector3.Normalize(new Vector3((float)Math.Cos(fireAngle), (float)Math.Sin(fireAngle), 0));
+                    bullet.GetComponent<Rigidbody>().Velocity = direction * bulletSpeed;
+                    bullet.Transform.Position = Transform.Position;
+                    ParentScene.AddEntity(bullet);
+                }
+
+                bulletSpeed -= decrementSpeed;
+            }
+
+            bulletSpeed = origBullSpeed;
             
+            if (repeating)
+                nextFire = (float)gameTime.TotalTime.TotalSeconds + attackSpeed;
         }
     }
 }
