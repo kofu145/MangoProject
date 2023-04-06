@@ -49,11 +49,13 @@ public class TestEnemiesScene : GameState
         sprite.Origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
 
         timeline = new Timeline();
-        timeline.AddEvent(new BasicSideFairies(0, 5, 1));
-        //timeline.BeginTimeline();
+        timeline.AddEvent(new BasicSidePixies(0, 5, 1));
+        timeline.AddEvent(new DownCurvePathPixies(13, 5, 1));
+
+        timeline.BeginTimeline();
 
         Console.WriteLine(pixie.Transform.Position);
-        AddEntity(pixie);
+        //AddEntity(pixie);
         AddEntity(kitsuneEntity);
         StageUtils.MakeBoundRectangles(GameScene);
     }
@@ -62,7 +64,7 @@ public class TestEnemiesScene : GameState
     {
         //Console.WriteLine(GameScene.Entities.Count);
         //Console.WriteLine(pixie.Transform.Position);
-        //timeline.UpdateEvents(gameTime);
+        timeline.UpdateEvents(gameTime);
         StageUtils.OutOfBoundsCheck(GameScene);
     }
 }
