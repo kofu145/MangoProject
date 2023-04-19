@@ -6,7 +6,7 @@ using MangoProject.Components.BulletPatterns;
 
 namespace MangoProject.Events.StageOne;
 
-public class DownCurvePathPixies : IEvent
+public class DoublePixieSpin : IEvent
 {
     public float TriggerTime { get; }
     public bool Finished { get; }
@@ -16,11 +16,11 @@ public class DownCurvePathPixies : IEvent
     private int enemiesSpawned;
     private float spawnRate;
     private float nextSpawn;
-    private BasicForestPixie pixie;
-    private BasicForestPixie downPixie;
+    private BasicForestPixie rightPixie;
+    private BasicForestPixie leftPixie;
 
 
-    public DownCurvePathPixies(float triggerTime, int enemiesToSpawn, float spawnRate)
+    public DoublePixieSpin(float triggerTime, int enemiesToSpawn, float spawnRate)
     {
         TriggerTime = triggerTime;
         this.enemiesToSpawn = enemiesToSpawn;
@@ -28,18 +28,18 @@ public class DownCurvePathPixies : IEvent
         nextSpawn = 0;
         enemiesSpawned = 0;
         spawnTimer = new Stopwatch();
-        pixie = new BasicForestPixie(
-            new Vector2(-3, 0),
-            new Vector2(1500, 0),
-            new Vector2(-920, 400),
-            new Vector2(583, 400),
+        rightPixie = new BasicForestPixie(
+            new Vector2(580, 200),
+            new Vector2(390, 200),
+            new Vector2(390, 200),
+            new Vector2(390, 200),
             .15f
         );
-        downPixie = new BasicForestPixie(
-            new Vector2(290, 0),
-            new Vector2(290, 0),
-            new Vector2(290, 300),
-            new Vector2(290, 300),
+        leftPixie = new BasicForestPixie(
+            new Vector2(0, 200),
+            new Vector2(190, 200),
+            new Vector2(190, 200),
+            new Vector2(190, 200),
             .15f
         );
     }
@@ -47,19 +47,18 @@ public class DownCurvePathPixies : IEvent
     public void Start()
     {
         spawnTimer.Start();
-        GameStateManager.GetScreen().GameScene.AddEntity(downPixie.Instantiate()
-            .AddComponent(new SpinBulletGenerator(12, 50, 32, 150,
-                true, 1.2f, 1, 0, 1, 11)));
+        GameStateManager.GetScreen().GameScene.AddEntity(rightPixie.Instantiate()
+            .AddComponent(new SpinBulletGenerator(12, 50, 2, 220,
+                true, .2f, 1, 0, 1, 24)));
+        GameStateManager.GetScreen().GameScene.AddEntity(leftPixie.Instantiate()
+            .AddComponent(new SpinBulletGenerator(12, 50, 2, 220,
+                true, .2f, 1, 0, 1, -24)));
     }
 
     public void Update(GameTime gameTime)
     {
         if (gameTime.TotalTime.TotalSeconds > nextSpawn && enemiesSpawned < enemiesToSpawn)
         {
-            GameStateManager.GetScreen().GameScene.AddEntity(pixie.Instantiate()
-                .AddComponent(new StackedShotgun(12, 40, 1, 220, true, 
-                    1f, 1, 10, 4)));
-            
 
             nextSpawn = (float) gameTime.TotalTime.TotalSeconds + spawnRate;
             enemiesSpawned++;

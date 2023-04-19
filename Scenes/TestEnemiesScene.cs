@@ -3,7 +3,7 @@ using GramEngine.Core;
 using GramEngine.ECS;
 using GramEngine.ECS.Components;
 using System.Numerics;
-using EirTesting.Prefabs;
+using MangoProject.Prefabs;
 using MangoProject.Components;
 using MangoProject.Components.BulletPatterns;
 using MangoProject.Components.MovementBehavior;
@@ -49,8 +49,10 @@ public class TestEnemiesScene : GameState
         sprite.Origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
 
         timeline = new Timeline();
-        timeline.AddEvent(new BasicSidePixies(0, 5, 1));
-        timeline.AddEvent(new DownCurvePathPixies(13, 5, 1));
+        timeline.AddEvent(new OffsetArcPixies(0, 5, 1));
+        timeline.AddEvent(new DoublePixieSpin(17, 5, 1));
+        timeline.AddEvent(new DownCurvePathPixies(30, 5, 1));
+        timeline.AddEvent(new BasicSidePixies(40, 5, 1));
 
         timeline.BeginTimeline();
 

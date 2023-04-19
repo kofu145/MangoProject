@@ -4,7 +4,7 @@ using GramEngine.ECS.Components;
 using MangoProject.Components.BulletPatterns;
 using MangoProject.Components.MovementBehavior;
 
-namespace EirTesting.Prefabs;
+namespace MangoProject.Prefabs;
 
 public class BasicForestPixie : Prefab
 {

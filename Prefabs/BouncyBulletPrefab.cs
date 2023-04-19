@@ -6,12 +6,14 @@ using MangoProject.Components;
 
 namespace MangoProject.Prefabs;
 
-public class BasicBulletPrefab : Prefab
+public class BouncyBulletPrefab : Prefab
 {
     private float radius;
-    public BasicBulletPrefab(float radius)
+    private int bounces;
+    public BouncyBulletPrefab(float radius, int bounces)
     {
         this.radius = radius;
+        this.bounces = bounces;
     }
     public override Entity Instantiate()
     {
@@ -21,7 +23,7 @@ public class BasicBulletPrefab : Prefab
         entity.Transform.Scale = new Vector2(scale, scale);
         entity.AddComponent(new Rigidbody(true))
             .AddComponent(new CircleCollider(radius/2, false, false))
-            .AddComponent(new BasicBullet());
+            .AddComponent(new BouncyBullet(bounces));
 
         entity.Tag = "bullet";
         return entity;

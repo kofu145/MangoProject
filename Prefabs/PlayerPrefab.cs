@@ -4,7 +4,7 @@ using GramEngine.ECS;
 using GramEngine.ECS.Components;
 using MangoProject.Components;
 
-namespace EirTesting.Prefabs;
+namespace MangoProject.Prefabs;
 
 public class PlayerPrefab : Prefab
 {

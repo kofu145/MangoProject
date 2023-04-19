@@ -6,7 +6,7 @@ using MangoProject.Components.BulletPatterns;
 
 namespace MangoProject.Events.StageOne;
 
-public class DownCurvePathPixies : IEvent
+public class OffsetArcPixies : IEvent
 {
     public float TriggerTime { get; }
     public bool Finished { get; }
@@ -20,7 +20,7 @@ public class DownCurvePathPixies : IEvent
     private BasicForestPixie downPixie;
 
 
-    public DownCurvePathPixies(float triggerTime, int enemiesToSpawn, float spawnRate)
+    public OffsetArcPixies(float triggerTime, int enemiesToSpawn, float spawnRate)
     {
         TriggerTime = triggerTime;
         this.enemiesToSpawn = enemiesToSpawn;
@@ -47,9 +47,6 @@ public class DownCurvePathPixies : IEvent
     public void Start()
     {
         spawnTimer.Start();
-        GameStateManager.GetScreen().GameScene.AddEntity(downPixie.Instantiate()
-            .AddComponent(new SpinBulletGenerator(12, 50, 32, 150,
-                true, 1.2f, 1, 0, 1, 11)));
     }
 
     public void Update(GameTime gameTime)
@@ -57,8 +54,8 @@ public class DownCurvePathPixies : IEvent
         if (gameTime.TotalTime.TotalSeconds > nextSpawn && enemiesSpawned < enemiesToSpawn)
         {
             GameStateManager.GetScreen().GameScene.AddEntity(pixie.Instantiate()
-                .AddComponent(new StackedShotgun(12, 40, 1, 220, true, 
-                    1f, 1, 10, 4)));
+                .AddComponent(new ShotgunCone(12, 14, 170, true, 5f, 
+                    .5f, 4, .02f, true)));
             
 
             nextSpawn = (float) gameTime.TotalTime.TotalSeconds + spawnRate;

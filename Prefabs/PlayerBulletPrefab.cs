@@ -3,7 +3,7 @@ using System.Numerics;
 using GramEngine.ECS;
 using GramEngine.ECS.Components;
 
-namespace EirTesting.Prefabs;
+namespace MangoProject.Prefabs;
 
 public class PlayerBulletPrefab : Prefab
 {
