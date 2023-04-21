@@ -5,6 +5,7 @@ using GramEngine.ECS;
 using GramEngine.ECS.Components;
 using GramEngine.Core.Input;
 using MangoProject.Components.MovementBehavior;
+using MangoProject.Events;
 using MangoProject.Utils;
 
 namespace MangoProject.Components;
@@ -26,6 +27,8 @@ public class Player: Component
     private float flickerTime;
     private float flickerEvent;
     private Entity focusEntity;
+    private int attackLevel;
+    private int power;
 
     private Keys[] inputs = { Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space, Keys.LShift };
     private float topSpeed;
@@ -47,6 +50,8 @@ public class Player: Component
         loseInvincibleEvent = 0;
         this.invincibleDuration = invincibleDuration;
         this.flickerTime = flickerTime;
+        attackLevel = 1;
+        this.power = 0;
         flickerEvent = 0;
 
     }
@@ -73,6 +78,8 @@ public class Player: Component
         focusSprite.Enabled = false;
         speed = topSpeed;
         
+        CheckPoC();
+
         Vector3 direction = Vector3.Zero;
 
         if (InputManager.GetKeyPressed(inputs[0]))
@@ -98,11 +105,8 @@ public class Player: Component
 
         if (isFiring && gameTime.TotalTime.TotalSeconds >= nextFireEvent)
         {
-            var playerBullet = bullet.Instantiate();
-            playerBullet.Transform.Position = Transform.Position;
-            playerBullet.GetComponent<Rigidbody>().AddForce(new Vector3(0, -1300, 0));
-            ParentScene.AddEntity(playerBullet);
-            nextFireEvent = (float)gameTime.TotalTime.TotalSeconds + attackSpeed;
+            ShootBullet(gameTime);
+
         }
 
         if (isInvincible && gameTime.TotalTime.TotalSeconds >= loseInvincibleEvent)
@@ -154,6 +158,59 @@ public class Player: Component
             {
                 ParentScene.DestroyEntity(entity);
             }
+        }
+    }
+
+    public void AddPower(int amount)
+    {
+        power += amount;
+        // flawed in case adding 800 or more
+        if (power >= 400)
+        {
+            if (attackLevel < 2)
+                attackLevel++;
+            power -= 400;
+            
+        }
+    }
+
+    public void CheckPoC()
+    {
+        if (Transform.Position.Y < 200)
+        {
+            var items = ParentScene.Entities.Where(e => e.Tag == "item");
+            foreach (var item in items)
+            {
+                if (!item.HasComponent<HomingToEntity>())
+                {
+                    item.AddComponent(new HomingToEntity(ParentEntity, false, 400));
+                }
+            }
+        }
+    }
+
+    public void ShootBullet(GameTime gameTime)
+    {
+        switch (attackLevel)
+        {
+            case 1:
+                var playerBullet = bullet.Instantiate();
+                playerBullet.Transform.Position = Transform.Position;
+                playerBullet.GetComponent<Rigidbody>().AddForce(new Vector3(0, -1300, 0));
+                ParentScene.AddEntity(playerBullet);
+                nextFireEvent = (float)gameTime.TotalTime.TotalSeconds + attackSpeed;
+                break;
+            case 2:
+                for (int i = 0; i < 3; i++)
+                {
+                    var bull = bullet.Instantiate();
+                    bull.Transform.Position = Transform.Position;
+                    bull.Transform.Position.X += -15 + i * 15;
+                    bull.GetComponent<Rigidbody>().AddForce(new Vector3(0, -1300, 0));
+                    ParentScene.AddEntity(bull);
+                    nextFireEvent = (float)gameTime.TotalTime.TotalSeconds + attackSpeed;
+                }
+                break;
         }
     }
 }

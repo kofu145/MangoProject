@@ -49,10 +49,10 @@ public class DoublePixieSpin : IEvent
         spawnTimer.Start();
         GameStateManager.GetScreen().GameScene.AddEntity(rightPixie.Instantiate()
             .AddComponent(new SpinBulletGenerator(12, 50, 2, 220,
-                true, .2f, 1, 0, 1, 24)));
+                true, .1f, 1, 0, 1, 24)));
         GameStateManager.GetScreen().GameScene.AddEntity(leftPixie.Instantiate()
             .AddComponent(new SpinBulletGenerator(12, 50, 2, 220,
-                true, .2f, 1, 0, 1, -24)));
+                true, .1f, 1, 0, 1, -24)));
     }
 
     public void Update(GameTime gameTime)

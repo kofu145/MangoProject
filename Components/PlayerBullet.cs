@@ -8,6 +8,13 @@ public class PlayerBullet : Component
 {
     private CircleCollider collider;
     private Rigidbody rb;
+    private int damage;
+    
+    public PlayerBullet(int damage)
+    {
+        this.damage = damage;
+    }
+    
     public override void Initialize()
     {
         collider = ParentEntity.GetComponent<CircleCollider>();
@@ -18,9 +25,12 @@ public class PlayerBullet : Component
         
         ParentEntity.GetComponent<CircleCollider>().OnCollision += (CircleCollider other) =>
         {
+            //Console.WriteLine("hit!");
+            
             if (other.ParentEntity.HasComponent<Enemy>())
             {
-                
+                other.ParentEntity.GetComponent<Enemy>().TakeDamage(damage);
+                ParentScene.DestroyEntity(ParentEntity);
             }
             //rb.Velocity = -rb.Velocity;
         };

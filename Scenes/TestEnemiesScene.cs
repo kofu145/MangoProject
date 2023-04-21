@@ -50,9 +50,9 @@ public class TestEnemiesScene : GameState
 
         timeline = new Timeline();
         timeline.AddEvent(new OffsetArcPixies(0, 5, 1));
-        timeline.AddEvent(new DoublePixieSpin(17, 5, 1));
-        timeline.AddEvent(new DownCurvePathPixies(30, 5, 1));
-        timeline.AddEvent(new BasicSidePixies(40, 5, 1));
+        timeline.AddEvent(new DoublePixieSpin(10, 5, 1));
+        timeline.AddEvent(new DownCurvePathPixies(20, 5, 1));
+        timeline.AddEvent(new BasicSidePixies(30, 5, 1));
 
         timeline.BeginTimeline();
 

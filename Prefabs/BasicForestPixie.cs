@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 using GramEngine.ECS;
 using GramEngine.ECS.Components;
+using MangoProject.Components;
 using MangoProject.Components.BulletPatterns;
 using MangoProject.Components.MovementBehavior;
 
@@ -30,7 +31,8 @@ public class BasicForestPixie : Prefab
         //pixie.AddComponent(new StackedShotgun(12, 20, 5, 150, true, 1.5f, 1, 5, 4));
         //pixie.AddComponent(new CircleOfBullets(12, 50, 16, 150, true, true, 1.5f, 1, 0, 1));
         //pixie.AddComponent(new SpinBulletGenerator(12, 50, 16, 150, true, 1.2f, 1, 0, 1, 11));
-
+        pixie.AddComponent(new CircleCollider(12, false));
+        pixie.AddComponent(new Enemy(120));
         var sprite = pixie.GetComponent<Sprite>();
         pixie.Transform.Position = new Vector3(550, 5, 0);
         pixie.Transform.Scale = new Vector2(3.5f, 3.5f);//, 2f);
