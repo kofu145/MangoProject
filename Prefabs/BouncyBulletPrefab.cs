@@ -22,9 +22,10 @@ public class BouncyBulletPrefab : Prefab
         var scale = radius / sprite.Width * 2;
         entity.Transform.Scale = new Vector2(scale, scale);
         entity.AddComponent(new Rigidbody(true))
-            .AddComponent(new CircleCollider(radius/2, false, false))
-            .AddComponent(new BouncyBullet(bounces));
-
+            .AddComponent(new CircleCollider(radius / 2, false, false))
+            .AddComponent(new BouncyBullet(bounces))
+            .AddComponent(new Sound("./Content/Sound/shoot2.wav"));
+        
         entity.Tag = "bullet";
         return entity;
     }
