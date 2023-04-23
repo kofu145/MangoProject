@@ -66,6 +66,7 @@ public class TestEnemiesScene : GameState
     {
         //Console.WriteLine(GameScene.Entities.Count);
         //Console.WriteLine(pixie.Transform.Position);
+        Console.WriteLine(gameTime.DeltaTime);
         timeline.UpdateEvents(gameTime);
         StageUtils.OutOfBoundsCheck(GameScene);
     }
