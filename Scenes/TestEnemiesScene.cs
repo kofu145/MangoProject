@@ -49,7 +49,8 @@ public class TestEnemiesScene : GameState
         sprite.Origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
 
         timeline = new Timeline();
-        timeline.AddEvent(new OffsetArcPixies(0, 5, 1));
+        //timeline.AddEvent(new OffsetArcPixies(0, 5, 1));
+        timeline.AddEvent(new HomingGhosts(0, 5, 1));
         timeline.AddEvent(new DoublePixieSpin(10, 5, 1));
         timeline.AddEvent(new DownCurvePathPixies(20, 5, 1));
         timeline.AddEvent(new BasicSidePixies(30, 5, 1));
@@ -66,7 +67,7 @@ public class TestEnemiesScene : GameState
     {
         //Console.WriteLine(GameScene.Entities.Count);
         //Console.WriteLine(pixie.Transform.Position);
-        Console.WriteLine(gameTime.DeltaTime);
+        //Console.WriteLine(gameTime.DeltaTime);
         timeline.UpdateEvents(gameTime);
         StageUtils.OutOfBoundsCheck(GameScene);
     }

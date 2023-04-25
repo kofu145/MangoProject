@@ -165,12 +165,12 @@ public class Player: Component
     {
         power += amount;
         // flawed in case adding 800 or more
-        if (power >= 400)
+        if (power >= 100)
         {
-            if (attackLevel < 2)
+            if (attackLevel < 3)
                 attackLevel++;
-            power -= 400;
-            
+            power = 0;
+
         }
     }
 
@@ -195,22 +195,62 @@ public class Player: Component
         {
             case 1:
                 var playerBullet = bullet.Instantiate();
-                playerBullet.Transform.Position = Transform.Position;
-                playerBullet.GetComponent<Rigidbody>().AddForce(new Vector3(0, -1300, 0));
-                ParentScene.AddEntity(playerBullet);
+                MakeBullet(0, 0, -1300);
                 nextFireEvent = (float)gameTime.TotalTime.TotalSeconds + attackSpeed;
                 break;
             case 2:
                 for (int i = 0; i < 3; i++)
                 {
-                    var bull = bullet.Instantiate();
-                    bull.Transform.Position = Transform.Position;
-                    bull.Transform.Position.X += -15 + i * 15;
-                    bull.GetComponent<Rigidbody>().AddForce(new Vector3(0, -1300, 0));
-                    ParentScene.AddEntity(bull);
+                    MakeBullet(-15 + i * 15, 0, -1300);
                     nextFireEvent = (float)gameTime.TotalTime.TotalSeconds + attackSpeed;
                 }
                 break;
+            case 3:
+                var velxMid = 10;
+                for (int i = 0; i < 2; i++)
+                {
+                    velxMid *= -1;
+                    MakeBullet(-10 + i * 20, velxMid, -1300);
+                }
+
+                var velx = 100;
+                for (int i = 0; i < 2; i++)
+                {
+                    velx *= -1;
+                    MakeBullet(-15 + i * 30, velx, -1250);
+                }
+                nextFireEvent = (float)gameTime.TotalTime.TotalSeconds + attackSpeed;
+                break;
+            case 4:
+                
+                
+                var velxMidFour = 10;
+                for (int i = 0; i < 2; i++)
+                {
+                    velxMidFour *= -1;
+                    MakeBullet(-10 + i * 20, velxMidFour, -1300);
+                }
+
+                var velxFour = 100;
+                for (int i = 0; i < 2; i++)
+                {
+                    velxFour *= -1;
+                    MakeBullet(-15 + i * 30, velxFour, -1250);
+                    nextFireEvent = (float)gameTime.TotalTime.TotalSeconds + attackSpeed;
+                }
+                
+                break;
         }
+        
     }
+
+    public void MakeBullet(float xOffset, float velX, float velY)
+    {
+        var bull = bullet.Instantiate();
+        bull.Transform.Position = Transform.Position;
+        bull.Transform.Position.X += xOffset;
+        bull.GetComponent<Rigidbody>().AddForce(new Vector3(velX, velY, 0));
+        ParentScene.AddEntity(bull);
+    }
+    
 }

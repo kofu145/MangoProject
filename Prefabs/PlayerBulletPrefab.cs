@@ -14,7 +14,7 @@ public class PlayerBulletPrefab : Prefab
         entity.AddComponent(new Sprite("./Content/elongated_bullet_small.png"))
             .AddComponent(new CircleCollider(entity.GetComponent<Sprite>().Width, false, true))
             .AddComponent(new Rigidbody())
-            .AddComponent(new PlayerBullet(50));
+            .AddComponent(new PlayerBullet(20));
         entity.Transform.Scale = new Vector2(2, 2);
         entity.GetComponent<Sprite>().Color = Color.FromArgb(100, 255, 255,255);
         return entity;

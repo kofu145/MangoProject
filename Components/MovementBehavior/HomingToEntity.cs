@@ -34,11 +34,18 @@ public class HomingToEntity : Component
         }
         
         base.Update(gameTime);
+
         if (stopAtY && ParentEntity.Transform.Position.Y > target.Transform.Position.Y)
             ParentEntity.RemoveComponent(this);
 
+        
         var direction = Vector3.Normalize(target.Transform.Position - Transform.Position);
 
+        if (stopAtY)
+        {
+            direction = Vector3.Normalize(new Vector3(target.Transform.Position.X - Transform.Position.X, speed, 0));
+        }
+        
         rb.Velocity = direction * speed;
 
     }
