@@ -126,14 +126,15 @@ public class Player: Component
         rb.Velocity = direction * speed;
 
         float boundaryX = StageUtils.Width;
-        float boundaryY = GameStateManager.Window.Height;
+        float boundaryY = StageUtils.Height;
         
         Transform.Position.X = Math.Clamp(
             Transform.Position.X,
             (sprite.Width+.05f * Transform.Scale.X) / 2, 
             (boundaryX - ((sprite.Width-.05f * Transform.Scale.X) / 2)));
         
-        Transform.Position.Y = Math.Clamp(Transform.Position.Y, 
+        Transform.Position.Y = Math.Clamp(
+            Transform.Position.Y, 
             (sprite.Height * Transform.Scale.Y / 2), 
             boundaryY -(sprite.Height * Transform.Scale.Y / 2));
 

@@ -57,7 +57,7 @@ public class TestEnemiesScene : GameState
 
         timeline.BeginTimeline();
 
-        Console.WriteLine(pixie.Transform.Position);
+       // Console.WriteLine(pixie.Transform.Position);
         //AddEntity(pixie);
         AddEntity(kitsuneEntity);
         StageUtils.MakeBoundRectangles(GameScene);
@@ -68,6 +68,7 @@ public class TestEnemiesScene : GameState
         //Console.WriteLine(GameScene.Entities.Count);
         //Console.WriteLine(pixie.Transform.Position);
         //Console.WriteLine(gameTime.DeltaTime);
+        Console.WriteLine(kitsuneEntity.Transform.Position);
         timeline.UpdateEvents(gameTime);
         StageUtils.OutOfBoundsCheck(GameScene);
     }

@@ -9,6 +9,7 @@ namespace MangoProject.Utils;
 public class StageUtils
 {
     public const int Width = 580;
+    public const int Height = 720;
     
     public static void MakeBoundRectangles(Scene gameScene)
     {
