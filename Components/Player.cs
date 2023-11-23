@@ -154,10 +154,16 @@ public class Player: Component
             loseInvincibleEvent = (float)GameStateManager.GameTime.TotalTime.TotalSeconds + invincibleDuration;
             flickerEvent = (float)GameStateManager.GameTime.TotalTime.TotalSeconds + flickerTime;
             Transform.Position = new Vector3(290, 600f, 0f);
+            List<Entity> enemies = ParentScene.FindEntitiesWithTag("enemy");
             List<Entity> bullets = ParentScene.FindEntitiesWithTag("bullet");
             foreach (var entity in bullets)
             {
                 ParentScene.DestroyEntity(entity);
+            }
+
+            foreach (var entity in enemies)
+            {
+                entity.GetComponent<Sound>().Stop();
             }
         }
     }

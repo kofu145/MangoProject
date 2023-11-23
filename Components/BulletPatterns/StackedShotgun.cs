@@ -46,6 +46,7 @@ public class StackedShotgun : Component
         // fire!!!
         if (gameTime.TotalTime.TotalSeconds > nextFire)
         {
+            ParentEntity.GetComponent<Sound>().Play();
             var origBullSpeed = bulletSpeed;
             for (int i = 0; i < rows; i++)
             {
@@ -59,7 +60,6 @@ public class StackedShotgun : Component
                     direction = Vector3.Normalize(new Vector3((float)Math.Cos(fireAngle), (float)Math.Sin(fireAngle), 0));
                     bullet.GetComponent<Rigidbody>().Velocity = direction * bulletSpeed;
                     bullet.Transform.Position = Transform.Position;
-                    bullet.GetComponent<Sound>().Play();
                     ParentScene.AddEntity(bullet);
                 }
 

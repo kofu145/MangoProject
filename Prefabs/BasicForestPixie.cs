@@ -33,9 +33,13 @@ public class BasicForestPixie : Prefab
         //pixie.AddComponent(new SpinBulletGenerator(12, 50, 16, 150, true, 1.2f, 1, 0, 1, 11));
         pixie.AddComponent(new CircleCollider(12, false));
         pixie.AddComponent(new Enemy(120));
+        pixie.AddComponent(new Sound("./Content/Sound/shoot2.wav"));
+        pixie.GetComponent<Sound>().Volume = 3;
+        pixie.GetComponent<Sound>().Pitch = 1f;
         var sprite = pixie.GetComponent<Sprite>();
         pixie.Transform.Position = new Vector3(550, 5, 0);
         pixie.Transform.Scale = new Vector2(3.5f, 3.5f);//, 2f);
+        pixie.Tag = "enemy";
         return pixie;
     }
 }

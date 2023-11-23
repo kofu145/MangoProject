@@ -53,7 +53,7 @@ public class ShotgunCone : Component
         if (gameTime.TotalTime.TotalSeconds > nextFire)
         {
             inFire = true;
-
+            ParentEntity.GetComponent<Sound>().Play();
         }
 
         var direction = player.Transform.Position - Transform.Position;
@@ -70,7 +70,6 @@ public class ShotgunCone : Component
                 direction = Vector3.Normalize(new Vector3((float)Math.Cos(fireAngle), (float)Math.Sin(fireAngle), 0));
                 bullet.GetComponent<Rigidbody>().Velocity = direction * bulletSpeed;
                 bullet.Transform.Position = Transform.Position;
-                bullet.GetComponent<Sound>().Play();
                 
                 ParentScene.AddEntity(bullet);
                 bulletOffsetEvent = (float)gameTime.TotalTime.TotalSeconds + bulletOffsetTime;

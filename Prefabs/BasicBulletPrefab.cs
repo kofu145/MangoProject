@@ -21,8 +21,7 @@ public class BasicBulletPrefab : Prefab
         entity.Transform.Scale = new Vector2(scale, scale);
         entity.AddComponent(new Rigidbody(true))
             .AddComponent(new CircleCollider(radius/2, false, false))
-            .AddComponent(new BasicBullet())
-            .AddComponent(new Sound("./Content/Sound/shoot.wav"));
+            .AddComponent(new BasicBullet());
 
         entity.Tag = "bullet";
         return entity;
